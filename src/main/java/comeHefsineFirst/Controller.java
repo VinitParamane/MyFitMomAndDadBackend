@@ -22,7 +22,27 @@ public class Controller {
 		@Autowired
 		RequestRepo requestrepo;
 		
-		
+		@RequestMapping("/signup")
+		public int signup(@RequestBody String [] data)
+		{
+			try
+			{
+				//0->username
+				//1->email
+				//2->password
+				User user=new User();
+				user.setUsername(data[0]);
+				user.setPassword(data[2]);
+				user.setEmail(data[1]);
+				userrepo.save(user);
+				return 1;
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				return 0;
+			}
+		}
 		
 		@RequestMapping("/hii")
 		public int hii()
